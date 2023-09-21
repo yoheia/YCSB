@@ -53,6 +53,8 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.slf4j.helpers.MessageFormatter;
 
+import software.aws.mcs.auth.SigV4AuthProvider;
+
 /**
  * Cassandra 2.x CQL client.
  *
@@ -177,6 +179,7 @@ public class CassandraCQLClient extends DB {
         Boolean useSSL = Boolean.parseBoolean(getProperties().getProperty(USE_SSL_CONNECTION,
             DEFAULT_USE_SSL_CONNECTION));
 
+/*
         if ((username != null) && !username.isEmpty()) {
           Cluster.Builder clusterBuilder = Cluster.builder().withCredentials(username, password)
               .withPort(Integer.valueOf(port)).addContactPoints(hosts);
@@ -188,6 +191,16 @@ public class CassandraCQLClient extends DB {
           cluster = Cluster.builder().withPort(Integer.valueOf(port))
               .addContactPoints(hosts).build();
         }
+*/
+
+        String endPoint = "cassandra.ap-northeast-1.amazonaws.com";
+        int portNumber = 9142;
+        cluster = Cluster.builder()
+                                .addContactPoint(endPoint)
+                                .withPort(portNumber)
+                                .withAuthProvider(new SigV4AuthProvider("ap-northeast-1"))
+                                .withSSL()
+                                .build();
 
         String maxConnections = getProperties().getProperty(
             MAX_CONNECTIONS_PROPERTY);

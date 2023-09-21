@@ -39,6 +39,11 @@ LICENSE file.
   <dependencies>
     <!-- CQL driver -->
     <dependency>
+        <groupId>software.aws.mcs</groupId>
+        <artifactId>aws-sigv4-auth-cassandra-java-driver-plugin_3</artifactId>
+        <version>3.0.3</version>
+    </dependency>
+    <dependency>
       <groupId>com.datastax.cassandra</groupId>
       <artifactId>cassandra-driver-core</artifactId>
       <version>${cassandra.cql.version}</version>
@@ -49,6 +54,7 @@ LICENSE file.
       <version>${project.version}</version>
       <scope>provided</scope>
     </dependency>
+<!--
     <dependency>
       <groupId>org.cassandraunit</groupId>
       <artifactId>cassandra-unit</artifactId>
@@ -68,7 +74,9 @@ LICENSE file.
       <version>4.12</version>
       <scope>test</scope>
     </dependency>
+-->
     <!-- only for Cassandra test (Cassandra 2.2+ uses Sigar for collecting system information, and Sigar requires some native lib files) -->
+<!--
 	  <dependency>
 	    <groupId>org.hyperic</groupId>
 	    <artifactId>sigar-dist</artifactId>
@@ -76,6 +84,7 @@ LICENSE file.
 	    <type>zip</type>
 	    <scope>test</scope>
 	  </dependency>
+-->
   </dependencies>
 
   <profiles>
